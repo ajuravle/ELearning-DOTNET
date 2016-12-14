@@ -21,6 +21,12 @@ namespace ELearning.Controllers
             return View();
         }
 
+        public IActionResult Topics()
+        {
+
+            return View();
+        }
+
         public IActionResult TryIt()
         {
 
