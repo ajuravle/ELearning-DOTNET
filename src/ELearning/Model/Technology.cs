@@ -6,6 +6,7 @@ namespace ELearning.Model
     public class Technology
     {
         public Guid Id { get; set; }
+
         [Display(Name = "Professor Id")]
         public Guid IdProfessor { get; set; }
 
