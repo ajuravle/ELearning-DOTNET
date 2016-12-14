@@ -148,5 +148,12 @@ namespace ELearning.Controllers
         {
             return _context.Technologies.Any(e => e.Id == id);
         }
+
+        [HttpGet, ActionName("GetAll")]
+        public IActionResult GetAll()
+        {
+            var technologies = _context.Technologies.AsEnumerable();
+            return new ObjectResult(technologies);
+        }
     }
 }
