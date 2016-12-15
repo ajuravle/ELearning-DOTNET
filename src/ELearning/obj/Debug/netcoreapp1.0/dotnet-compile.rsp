@@ -1,5 +1,5 @@
---temp-output:C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\obj\Debug\netcoreapp1.0\
---out:C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\bin\Debug\netcoreapp1.0\ELearning.dll
+--temp-output:C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\obj\Debug\netcoreapp1.0\
+--out:C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\bin\Debug\netcoreapp1.0\ELearning.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -229,25 +229,25 @@
 --reference:C:\Users\andre\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\andre\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\andre\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
---resource:"C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\obj\Debug\netcoreapp1.0\ELearningdotnet-compile.deps.json",ELearning.deps.json
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Program.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Startup.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Controllers\AccountController.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Controllers\AnswersController.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Controllers\HomeController.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Controllers\QuestionsController.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Controllers\TechnologiesController.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Controllers\TopicsController.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Controllers\UniversityUsersController.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Data\ApplicationDbContext.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Migrations\20161213213328_ELearning.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Migrations\20161213213328_ELearning.Designer.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Migrations\20161214001159_AddTechnologyName.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Migrations\20161214001159_AddTechnologyName.Designer.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Migrations\ApplicationDbContextModelSnapshot.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Model\AccountModels.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Model\Answer.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Model\Question.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Model\Technology.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Model\Topic.cs
-C:\Users\andre\documents\visual studio 2015\Projects\ELearning\src\ELearning\Model\UniversityUser.cs
+--resource:"C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\obj\Debug\netcoreapp1.0\ELearningdotnet-compile.deps.json",ELearning.deps.json
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Program.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Startup.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\AccountController.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\AnswersController.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\HomeController.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\QuestionsController.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\TechnologiesController.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\TopicsController.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\UniversityUsersController.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Data\ApplicationDbContext.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20161213213328_ELearning.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20161213213328_ELearning.Designer.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20161214001159_AddTechnologyName.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20161214001159_AddTechnologyName.Designer.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\ApplicationDbContextModelSnapshot.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\AccountModels.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\Answer.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\Question.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\Technology.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\Topic.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\UniversityUser.cs

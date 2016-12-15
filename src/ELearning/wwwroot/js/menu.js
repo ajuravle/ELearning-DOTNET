@@ -16,7 +16,7 @@
                 var item = document.createElement('li');
                 var a = document.createElement('a');
                 a.appendChild(document.createTextNode(list[i]["name"]));
-                a.setAttribute("href", "#");
+                a.setAttribute("href", "/Home/Learn");
                 item.appendChild(a)
                 ul.appendChild(item);
             }
