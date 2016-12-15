@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ELearning.Controllers
 {
@@ -23,7 +24,9 @@ namespace ELearning.Controllers
 
         public IActionResult Topics()
         {
-
+            ViewBag.FirstName = HttpContext.Session.GetString("FirstName");
+            ViewBag.LastName = HttpContext.Session.GetString("LastName");
+            ViewBag.Type = HttpContext.Session.GetString("Type");
             return View();
         }
 
