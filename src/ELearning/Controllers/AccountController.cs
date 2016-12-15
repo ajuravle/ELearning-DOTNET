@@ -59,7 +59,7 @@ namespace ELearning.Controllers
         {
             return View();
         }
-        
+
 
         // POST: /Account/Login
         [HttpPost]
@@ -75,12 +75,14 @@ namespace ELearning.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                else {
+                else if (user.Password == model.Password)
+                {
                     HttpContext.Session.SetString("Email", user.email);
                     HttpContext.Session.SetString("FirstName", user.Firstname);
                     HttpContext.Session.SetString("LastName", user.Lastname);
                     HttpContext.Session.SetString("Type", user.Type);
-                    return RedirectToAction("Topics","Home");
+                    return RedirectToAction("Topics", "Home");
+
                 }
             }
             // If we got this far, something failed, redisplay form
