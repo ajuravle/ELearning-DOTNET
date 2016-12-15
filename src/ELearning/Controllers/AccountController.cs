@@ -73,7 +73,7 @@ namespace ELearning.Controllers
                 var user = await _context.UniversityUsers.SingleOrDefaultAsync(m => m.email == model.Email);
                 if (user == null)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return View();
                 }
                 else if (user.Password == model.Password)
                 {
