@@ -58,6 +58,9 @@ namespace ELearning.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<string>("UrlImage")
+                        .IsRequired();
+
                     b.HasKey("Id");
 
                     b.ToTable("Technologies");
@@ -70,7 +73,7 @@ namespace ELearning.Migrations
 
                     b.Property<Guid>("IdTechnology");
 
-                    b.Property<string>("TechnologyName")
+                    b.Property<string>("TopicName")
                         .IsRequired();
 
                     b.HasKey("Id");

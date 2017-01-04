@@ -13,5 +13,8 @@ namespace ELearning.Model
         [Required, Display(Name = "Technology's name")]
         public string Name { get; set; }
 
+        [Required, Display(Name = "Image URL")]
+        public string UrlImage { get; set; }
+
     }
 }

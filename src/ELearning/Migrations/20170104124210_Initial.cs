@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ELearning.Migrations
 {
-    public partial class ELearning : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,7 +41,8 @@ namespace ELearning.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     IdProfessor = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: false)
+                    Name = table.Column<string>(nullable: false),
+                    UrlImage = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,7 +54,8 @@ namespace ELearning.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IdTechnology = table.Column<Guid>(nullable: false)
+                    IdTechnology = table.Column<Guid>(nullable: false),
+                    TopicName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
