@@ -148,5 +148,23 @@ namespace ELearning.Controllers
         {
             return _context.Topics.Any(e => e.Id == id);
         }
+
+        [HttpGet, ActionName("GetTopicsByTechnologyID")]
+        public IActionResult GetTopicsByTechnologyID(Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var topics = _context.Topics.Where(c => c.IdTechnology.Equals(id));
+
+            if (topics == null)
+            {
+                return NotFound();
+            }
+           
+            return new ObjectResult(topics);
+        }
     }
 }

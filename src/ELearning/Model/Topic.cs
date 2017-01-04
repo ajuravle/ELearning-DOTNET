@@ -12,5 +12,9 @@ namespace ELearning.Model
 
         [Required, Display(Name = "Technology's Id")]
         public Guid IdTechnology { get; set; }
+
+        [Required]
+        [DataType(DataType.Url)]
+        public string urmImage { get; set; }
     }
 }
