@@ -33,6 +33,21 @@ namespace ELearning.Migrations
                     b.ToTable("Answers");
                 });
 
+            modelBuilder.Entity("ELearning.Model.Material", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("IdTopic");
+
+                    b.Property<string>("UrlMaterial")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Materials");
+                });
+
             modelBuilder.Entity("ELearning.Model.Question", b =>
                 {
                     b.Property<Guid>("Id")

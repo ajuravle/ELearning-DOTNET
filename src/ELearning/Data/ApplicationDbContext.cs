@@ -15,5 +15,6 @@ namespace ELearning.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<Technology> Technologies { get; set; }
         public DbSet<Topic> Topics { get; set; }
+        public DbSet<Material> Materials { get; set; }
     }
 }
