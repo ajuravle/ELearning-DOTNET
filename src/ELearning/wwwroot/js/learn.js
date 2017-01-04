@@ -107,13 +107,22 @@ function myFunction(idTopic) {
                 item.setAttribute('class', 'item active');
             else
                 item.setAttribute('class', 'item');
-            var img = document.createElement('img');
-            img.setAttribute('src', list[i]["urlMaterial"]);
-            img.setAttribute('width', "460");
-            img.setAttribute('height', "345");
-            img.setAttribute('style', "margin: 0 auto;");
-
-            item.appendChild(img);
+            if (list[i]["urlMaterial"].match(/\.(jpeg|jpg|gif|png)$/) == null) {
+                var img = document.createElement('div');
+                img.setAttribute('class', "embed-responsive embed-responsive-16by9");
+                var ifr = document.createElement('iframe');
+                ifr.setAttribute('class', "embed-responsive-item");
+                ifr.setAttribute('src', list[i]["urlMaterial"]);
+                img.appendChild(ifr);
+                item.appendChild(img);
+            } else {
+                var img = document.createElement('img');
+                img.setAttribute('src', list[i]["urlMaterial"]);
+                img.setAttribute('width', "460");
+                img.setAttribute('height', "100%");
+                img.setAttribute('style', "margin: 0 auto");
+                item.appendChild(img);
+            }
             div.appendChild(item);
         }
     }
