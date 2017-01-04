@@ -149,7 +149,7 @@ namespace ELearning.Controllers
             return _context.Materials.Any(e => e.Id == id);
         }
 
-        [HttpGet, ActionName("GetMaterialsByTechnologyID")]
+        [HttpGet, ActionName("GetMaterialsByTopicID")]
         public IActionResult GetMaterialsByTopicID(Guid? id)
         {
             if (id == null)
