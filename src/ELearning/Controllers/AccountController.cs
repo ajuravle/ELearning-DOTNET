@@ -15,6 +15,7 @@ namespace ELearning.Controllers
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
+        
 
         public AccountController(ApplicationDbContext context)
         {
@@ -89,6 +90,11 @@ namespace ELearning.Controllers
             return View(model);
         }
 
-
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
     }
+
 }

@@ -43,12 +43,20 @@ namespace ELearning
                 options.IdleTimeout = TimeSpan.FromMinutes(60);
                 options.CookieName = "ELearning";
             });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(
+                    "student", policy => policy.RequireRole("student", "admin", "prof"));
+                options.AddPolicy(
+                    "prof", policy => policy.RequireRole("prof", "admin"));
+                options.AddPolicy(
+                    "admin", policy => policy.RequireRole("admin"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-
 
             app.UseSession();
 
@@ -77,7 +85,8 @@ namespace ELearning
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
+                
+           
             
         }
     }
