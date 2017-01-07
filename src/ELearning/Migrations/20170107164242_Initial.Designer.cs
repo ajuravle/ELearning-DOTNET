@@ -8,7 +8,7 @@ using ELearning.Data;
 namespace ELearning.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170104141452_Initial")]
+    [Migration("20170107164242_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,25 @@ namespace ELearning.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Answers");
+                });
+
+            modelBuilder.Entity("ELearning.Model.FastQuestion", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Active");
+
+                    b.Property<int>("Number");
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired();
+
+                    b.Property<int>("Type");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FastQuestion");
                 });
 
             modelBuilder.Entity("ELearning.Model.Material", b =>

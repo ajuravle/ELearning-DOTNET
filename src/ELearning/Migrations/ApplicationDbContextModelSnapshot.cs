@@ -33,6 +33,25 @@ namespace ELearning.Migrations
                     b.ToTable("Answers");
                 });
 
+            modelBuilder.Entity("ELearning.Model.FastQuestion", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Active");
+
+                    b.Property<int>("Number");
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired();
+
+                    b.Property<int>("Type");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FastQuestion");
+                });
+
             modelBuilder.Entity("ELearning.Model.Material", b =>
                 {
                     b.Property<Guid>("Id")

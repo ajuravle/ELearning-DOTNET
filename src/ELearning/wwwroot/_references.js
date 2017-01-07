@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="js/learn - copy.js" />
 /// <reference path="js/learn.js" />
 /// <reference path="js/menu.js" />
 /// <reference path="js/site.js" />

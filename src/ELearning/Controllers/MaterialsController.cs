@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using ELearning.Data;
 using ELearning.Model;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ELearning.Controllers
 {
@@ -16,7 +14,7 @@ namespace ELearning.Controllers
 
         public MaterialsController(ApplicationDbContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
         // GET: Materials
@@ -29,15 +27,11 @@ namespace ELearning.Controllers
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var material = await _context.Materials.SingleOrDefaultAsync(m => m.Id == id);
             if (material == null)
-            {
                 return NotFound();
-            }
 
             return View(material);
         }
@@ -69,15 +63,11 @@ namespace ELearning.Controllers
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var material = await _context.Materials.SingleOrDefaultAsync(m => m.Id == id);
             if (material == null)
-            {
                 return NotFound();
-            }
             return View(material);
         }
 
@@ -89,9 +79,7 @@ namespace ELearning.Controllers
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,IdTopic,UrlMaterial")] Material material)
         {
             if (id != material.Id)
-            {
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
@@ -103,13 +91,8 @@ namespace ELearning.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!MaterialExists(material.Id))
-                    {
                         return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
                 return RedirectToAction("Index");
             }
@@ -120,21 +103,18 @@ namespace ELearning.Controllers
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var material = await _context.Materials.SingleOrDefaultAsync(m => m.Id == id);
             if (material == null)
-            {
                 return NotFound();
-            }
 
             return View(material);
         }
 
         // POST: Materials/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
@@ -149,21 +129,18 @@ namespace ELearning.Controllers
             return _context.Materials.Any(e => e.Id == id);
         }
 
-        [HttpGet, ActionName("GetMaterialsByTopicID")]
+        [HttpGet]
+        [ActionName("GetMaterialsByTopicID")]
         public IActionResult GetMaterialsByTopicID(Guid? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var materials = _context.Materials.Where(c => c.IdTopic.Equals(id));
 
             if (materials == null)
-            {
                 return NotFound();
-            }
-           
+
             return new ObjectResult(materials);
         }
     }
