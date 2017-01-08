@@ -20,15 +20,28 @@ namespace ELearning.Controllers
         }
 
         [HttpPost]
-    public async Task<FastQuestion> Create([FromBody] FastQuestion fastQuestion)
+        public async Task<FastQuestion> Create([FromBody] FastQuestion fastQuestion)
         {
             if (ModelState.IsValid)
             {
+                foreach (FastQuestion f in _context.FastQuestion.AsEnumerable())
+                {
+                    f.Active = 0;
+                    _context.Update(f);
+                }
+
                 fastQuestion.Id = Guid.NewGuid();
                 _context.Add(fastQuestion);
                 await _context.SaveChangesAsync();
             }
             return fastQuestion;
+        }
+
+        [HttpGet, ActionName("GetActive")]
+        public IActionResult GetActive()
+        {
+            var question = _context.FastQuestion.SingleOrDefault(c => c.Active == 1);
+            return new ObjectResult(question);
         }
 
     }

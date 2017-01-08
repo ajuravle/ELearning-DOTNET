@@ -29,8 +29,16 @@ function addAnswer() {
     input.setAttribute('class', "form-control");
     input.setAttribute('type', "text");
     input.setAttribute('placeholder', "Enter answer");
+    input.setAttribute('style', "float: left; margin-right: 15px");
+    input.setAttribute('id', "ans" + answers.childElementCount);
+
+    var input2 = document.createElement('input');
+    input2.setAttribute('type', "checkbox");
+    input2.setAttribute('style', "vertical-align:middle");
+    input2.setAttribute('id', "check" + answers.childElementCount);
 
     div2.appendChild(input);
+    div2.appendChild(input2);
     div.appendChild(label);
     div.appendChild(div2);
     answers.appendChild(div);
@@ -64,18 +72,18 @@ function submitQ() {
         }
     }
     var nr;
-    if (sel_type==0) {
+    if (sel_type == 0) {
         nr = document.getElementById('nrCharactersAnswer').value;
     } else {
         nr = document.getElementById('answers').childElementCount;
     }
 
-    
+
     var data = {
         QuestionText: quesion.value,
         Type: sel_type,
-        Number : nr,
-        Active : 1
+        Number: nr,
+        Active: 1
     }
 
     $.ajax({
@@ -84,11 +92,53 @@ function submitQ() {
         dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify(data),
-        success: function (result) {
+        success: function(result) {
             console.log('Data received: ');
             console.log(result);
+            post_ans(result);
         }
     });
-    
 
+    function post_ans(result) {
+        var id_q = result["id"];
+        if (sel_type == 1) {
+            for (var i = 0; i < nr; i++) {
+                var ans = document.getElementById("ans" + i).value
+                var ischecked = document.getElementById("check" + i).checked
+
+                var dataA = {
+                    QuestionId: id_q,
+                    AnswerText: ans,
+                    Correct: ischecked
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Answers/AddFastAnswer',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(dataA),
+                    success: function (result) {
+                        console.log('Data received: ');
+                        console.log(result);
+                    }
+                });
+            }
+
+        }
+        window.location.replace("/Home/FastQuestionResponse");
+    }
 }
+
+$(document).ready(function () {
+    var question = document.getElementById("fastQuestionR");
+
+    $.ajax({
+        url: "/FastQuestion/GetActive",
+        type: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            question.appendChild(document.createTextNode(response["questionText"]));
+        }
+    });
+});

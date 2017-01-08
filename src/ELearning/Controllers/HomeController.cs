@@ -30,7 +30,13 @@ namespace ELearning.Controllers
             return View();
         }
 
-        public IActionResult FastQuestion()
+        public IActionResult FastQuestionProf()
+        {
+
+            return View();
+        }
+
+        public IActionResult FastQuestionResponse()
         {
 
             return View();

@@ -148,5 +148,19 @@ namespace ELearning.Controllers
         {
             return _context.Answers.Any(e => e.Id == id);
         }
+
+        [HttpPost]
+        public async Task<Answer> AddFastAnswer([FromBody] Answer answer)
+        {
+            if (ModelState.IsValid)
+            {
+                answer.Id = Guid.NewGuid();
+                _context.Add(answer);
+                await _context.SaveChangesAsync();
+            }
+            return answer;
+        }
+
     }
 }
+
