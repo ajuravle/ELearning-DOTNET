@@ -23,6 +23,19 @@ namespace ELearning.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FastAnswer",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Answer = table.Column<string>(nullable: false),
+                    QuestionId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FastAnswer", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FastQuestion",
                 columns: table => new
                 {
@@ -111,6 +124,9 @@ namespace ELearning.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Answers");
+
+            migrationBuilder.DropTable(
+                name: "FastAnswer");
 
             migrationBuilder.DropTable(
                 name: "FastQuestion");

@@ -161,6 +161,24 @@ namespace ELearning.Controllers
             return answer;
         }
 
+        [HttpGet, ActionName("GetByQuestionID")]
+        public IActionResult GetByQuestionID(Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var answers = _context.Answers.Where(c => c.QuestionId.Equals(id));
+
+            if (answers == null)
+            {
+                return NotFound();
+            }
+
+            return new ObjectResult(answers);
+        }
+
     }
 }
 

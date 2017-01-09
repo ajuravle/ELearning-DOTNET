@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Fast question";
+}
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <h4 class="col-md-1">Question: </h4>
+    <h4 class="col-md-11" id="fastQuestionR"></h4>
+</div>
+
+<div id="activeAnswer">
+    <div class="row" id="textAreaStud" style="display:none">
+        <h4 class="col-md-1">Answer: </h4>
+        <div class="col-md-11">
+            <textarea type="text" class="form-control " id="fastAnswer" style="resize: none;" minlength="3" rows="4"></textarea>
+            <div id="err_a" class="validation-summary-errors text-danger" data-valmsg-summary="true"></div>
+        </div>
+    </div>
+
+    <div class="row" id="answersStud" style="display:none">
+        <h4 style="position: relative; min-height: 1px; padding-right: 15px;padding-left: 15px;">Answers: </h4>
+        <div id="answersS" style="padding-left: 40px;"></div>
+    </div>
+
+    <div class="row" style="margin-left: 0px; margin-top: 10px">
+        <button id="buttonAnswer" type="button" class="btn btn-primary" onclick="post_answerStudent()">Submit</button>
+    </div>
+</div>
+<h4 id="inactiveAnswer" style="display: none"></h4>

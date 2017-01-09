@@ -4,7 +4,8 @@
         type: 'GET',
         dataType: 'json',
         success: function (response) {
-            f(response)
+            if (response)
+                f(response);
         }
     });
 

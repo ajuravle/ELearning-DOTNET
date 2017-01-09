@@ -236,6 +236,7 @@ C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearn
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Startup.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\AccountController.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\AnswersController.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\FastQuestionsController.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\HomeController.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\MaterialsController.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\QuestionsController.cs
@@ -243,11 +244,12 @@ C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearn
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\TopicsController.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\UniversityUsersController.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Data\ApplicationDbContext.cs
-C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20170107164242_Initial.cs
-C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20170107164242_Initial.Designer.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20170108183929_Initial.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20170108183929_Initial.Designer.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\ApplicationDbContextModelSnapshot.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\AccountModels.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\Answer.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\FastAnswer.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\FastQuestion.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\Material.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\Question.cs

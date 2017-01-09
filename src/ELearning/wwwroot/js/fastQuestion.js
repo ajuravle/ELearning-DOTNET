@@ -67,7 +67,7 @@ function submitQ() {
             if (types[i].value == 'text')
                 sel_type = 0;
             else {
-                sel_type = 1
+                sel_type = 1;
             }
         }
     }
@@ -132,13 +132,180 @@ function submitQ() {
 
 $(document).ready(function () {
     var question = document.getElementById("fastQuestionR");
-
     $.ajax({
         url: "/FastQuestion/GetActive",
         type: 'GET',
         dataType: 'json',
         success: function (response) {
+            if (response == null) {
+                if (document.getElementById("fastQuestionR")) document.getElementById("fastQuestionR").appendChild(document.createTextNode("No active question"));
+                if (document.getElementById("buttonAnswer")) {
+                    document.getElementById("buttonAnswer").style.display = 'none';
+                }
+            }
+            else {
             question.appendChild(document.createTextNode(response["questionText"]));
+            if (response["type"] == 0) {
+                if (document.getElementById("answersResp")) document.getElementById("answersResp").style.display = 'none';
+                if(document.getElementById("answersStud")) document.getElementById("answersStud").style.display = 'none';
+                if (document.getElementById("textAreaStud")) {
+                    document.getElementById("textAreaStud").style.display = 'block';
+                    document
+                        .getElementById("fastAnswer")
+                        .setAttribute("placeholder", "Max characters number: " + response["number"]);
+                }
+            } else {
+                if (document.getElementById("textAreaStud")) document.getElementById("textAreaStud").style.display = 'none';
+                if (document.getElementById("answersStud")) document.getElementById("answersStud").style.display = 'block';
+                
+            }
+            get_question_id(response["id"]);
+        }
         }
     });
+
+    function get_question_id(qID) {
+        $.ajax({
+            url: "/Answers/GetByQuestionID/" + qID,
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                if (document.getElementById("answersR")) {
+                    get_answers(response);
+                }
+                if (document.getElementById("answersS")) {
+                    get_answers2(response);
+                }
+            }
+        });
+    }
+
+    function get_answers(response) {
+        var answers = document.getElementById("answersR");
+        
+        for (var i = 0; i < response.length; i++) {
+            var p = document.createElement("h4");
+            if (response[i]["correct"])
+                p.setAttribute("class", "text-success");
+            else
+                p.setAttribute("class", "text-danger");
+            p.setAttribute("style", "padding-right: 15px; padding-left: 5px; margin-left: 15px;");
+            p.appendChild(document.createTextNode(response[i]["answerText"]));
+            answers.appendChild(p);
+        }
+    }
+
+    function get_answers2(response) {
+        console.log(response);
+        var answers = document.getElementById("answersS");
+
+        for (var i = 0; i < response.length; i++) {
+            var ck = document.createElement('input');
+            ck.setAttribute('type', "checkbox");
+            ck.setAttribute('style', "vertical-align:middle; float: left");
+            ck.setAttribute('id', "ck" + i);
+            ck.setAttribute('value', response[i]["id"]);
+            ck.setAttribute('data-valuetwo', response[i]["correct"]);
+            ck.setAttribute('name', "ck_name");
+
+            var p = document.createElement("h4");
+
+            p.setAttribute("style", "padding-right: 15px; padding-left: 5px; margin-left: 15px;");
+            p.appendChild(document.createTextNode(response[i]["answerText"]));
+            p.setAttribute('id', "ckaa" + i);
+            answers.appendChild(ck);
+            answers.appendChild(p);
+        }
+    }
+
+
 });
+
+function post_answerStudent() {
+    $.ajax({
+        url: "/FastQuestion/GetActive",
+        type: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            if (response["type"]==0)
+                f(response);
+            else {
+                f2(response);
+            }
+            document.getElementById("activeAnswer").style.display = 'none';
+            document.getElementById("inactiveAnswer").style.display = 'block';
+        }
+    });
+
+    function f(response) {
+        text = document.getElementById("fastAnswer").value;
+        if (document.getElementById('err_a').firstChild)
+            document.getElementById('err_a').removeChild(document.getElementById('err_a').firstChild);
+
+        if (response["number"] < text.length) {
+            document.getElementById('err_a').appendChild(document.createTextNode("Max characters number: "+response["number"]));
+
+        } else {
+        
+            var dataA = {
+                "questionID": response["id"],
+                "answer": text
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/FastAnswer/Create',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(dataA),
+                success: function(result) {
+                    console.log('Data received: ');
+                    console.log(result);
+                }
+            });
+            document.getElementById("inactiveAnswer").appendChild(document.createTextNode("Your answer:\xa0\xa0\xa0\xa0" + text));
+        }
+    }
+
+    function f2(response) {
+        var rasp = [];
+        var correct = [];
+        for (var i = 0; i < response["number"]; i++) {
+            var ck = document.getElementById("ck" + i.toString());
+            if (ck.checked) {
+                var dataA = {
+                    "questionID": response["id"],
+                    "answer": ck.value
+                }
+                var ckaa = document.getElementById("ckaa" + i.toString()).textContent;
+                rasp.push(ckaa);
+                correct.push(ck.getAttribute("data-valuetwo"));
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/FastAnswer/Create',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(dataA),
+                    success: function (result) {
+                        console.log('Data received: ');
+                        console.log(result);
+                    }
+                });
+            }
+        }
+        var inactiveAnswer = document.getElementById("inactiveAnswer")
+        inactiveAnswer.appendChild(document.createTextNode("Your answers:"));
+        for (var i = 0; i < rasp.length; i++) {
+            var p = document.createElement("h4");
+            p.setAttribute("style", "padding-right: 15px; padding-left: 5px; margin-left: 15px;");
+            if (correct[i]=="true")
+                p.setAttribute("class", "text-success");
+            else
+                p.setAttribute("class", "text-danger");
+            p.appendChild(document.createTextNode(rasp[i]));
+            inactiveAnswer.appendChild(p);
+        }
+
+    }
+}

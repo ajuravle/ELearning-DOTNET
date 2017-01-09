@@ -41,7 +41,7 @@ namespace ELearning.Controllers
         public IActionResult GetActive()
         {
             var question = _context.FastQuestion.SingleOrDefault(c => c.Active == 1);
-            return new ObjectResult(question);
+            return new JsonResult(question);
         }
 
     }
