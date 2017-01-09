@@ -3,19 +3,32 @@
 }
 <h2>@ViewBag.Title</h2>
 <hr />
+<div class="container">
+    <div class="row">
+        <h4 class="col-md-1">Question: </h4>
+        <h4 class="col-md-11" id="fastQuestionR"></h4>
+    </div>
 
-<div class="row">
-    <h4 class="col-md-1">Question: </h4>
-    <h4 class="col-md-11" id="fastQuestionR"></h4>
+
+    <div class="row" id="answersResp">
+        <h4 style="position: relative; min-height: 1px; padding-right: 15px;padding-left: 15px;">Answers: </h4>
+        <div id="answersR"></div>
+    </div>
+
+
+    <div class="row" style="margin-left: 0px; margin-top: 10px">
+        <button id="getAnswersButton" type="button" class="btn btn-primary" onclick="get_answerStudent()">Stop test</button>
+    </div>
 </div>
 
-
-<div class="row" id ="answersResp">
-    <h4 style="position: relative; min-height: 1px; padding-right: 15px;padding-left: 15px;">Answers: </h4>
-    <div id="answersR"></div>
-</div>
-
-
-<div class="row" style="margin-left: 0px; margin-top: 10px">
-     <button type="button" class="btn btn-primary">Stop test</button>
+<div class="container" id="studentsAnswers" style="display: none">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th colspan="2">Answers</th>
+            </tr>
+        </thead>
+        <tbody id="answersTable">
+        </tbody>
+    </table>
 </div>

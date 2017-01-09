@@ -144,7 +144,7 @@ $(document).ready(function () {
                 }
             }
             else {
-            question.appendChild(document.createTextNode(response["questionText"]));
+                question.appendChild(document.createTextNode(response["questionText"]));
             if (response["type"] == 0) {
                 if (document.getElementById("answersResp")) document.getElementById("answersResp").style.display = 'none';
                 if(document.getElementById("answersStud")) document.getElementById("answersStud").style.display = 'none';
@@ -308,4 +308,77 @@ function post_answerStudent() {
         }
 
     }
+}
+
+function get_answerStudent() {
+    $.ajax({
+        url: "/FastQuestion/GetActive",
+        type: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            document.getElementById("getAnswersButton").style.display = 'none';
+            document.getElementById("studentsAnswers").style.display = 'block';
+            f(response);
+        }
+    });
+
+    function f(question) {
+        $.ajax({
+            url: "/FastQuestion/StopTest",
+            type: 'POST'
+        });
+        $.ajax({
+            url: "/FastAnswer/GetByQuestionID/" + question["id"],
+            type: 'GET',
+            dataType: 'json',
+            success: function (res) {
+                f2(res, question);
+            }
+        });
+    }
+
+    function f2(answers, question) {
+        if (question["type"] == 0) {
+            var table = document.getElementById("answersTable");
+            for (var i = 0; i < answers.length; i++) {
+                var tr = document.createElement("tr");
+                var td = document.createElement("td");
+                td.appendChild(document.createTextNode(answers[i]["answer"]));
+                tr.appendChild(td);
+                table.appendChild(tr);
+            }
+        } else {
+
+            $.ajax({
+                url: "/Answers/GetByQuestionID/" + question["id"],
+                type: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    var table = document.getElementById("answersTable");
+                    for (var i = 0; i < res.length; i++) {
+                        var tr = document.createElement("tr");
+                        var td1 = document.createElement("td");
+                        var nr = 0;
+                        for (var j = 0; j < answers.length; j++) {
+                            console.log()
+                            if (answers[j]["answer"] == res[i]["id"])
+                                nr++;
+                        }
+                        td1.appendChild(document.createTextNode(nr + " (" + (nr*100 / answers.length).toFixed(2) + "%)"));
+                        td1.setAttribute("class","col-md-1");
+
+                        var td2 = document.createElement("td");
+                        td2.appendChild(document.createTextNode(res[i]["answerText"]));
+                        td2.setAttribute("class", "col-md-11");
+
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        table.appendChild(tr);
+                    }
+
+                }
+            });
+        }
+    }
+
 }

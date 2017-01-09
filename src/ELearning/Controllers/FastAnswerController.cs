@@ -32,5 +32,23 @@ namespace ELearning.Controllers
             return fastAnswer;
         }
 
+        [HttpGet, ActionName("GetByQuestionID")]
+        public IActionResult GetByQuestionId(Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var answers = _context.FastAnswer.Where(c => c.QuestionId.Equals(id));
+
+            if (answers == null)
+            {
+                return NotFound();
+            }
+
+            return new ObjectResult(answers);
+        }
+
     }
 }

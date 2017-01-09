@@ -37,6 +37,20 @@ namespace ELearning.Controllers
             return fastQuestion;
         }
 
+        [HttpPost]
+        public async Task StopTest()
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (FastQuestion f in _context.FastQuestion.AsEnumerable())
+                {
+                    f.Active = 0;
+                    _context.Update(f);
+                }
+                await _context.SaveChangesAsync();
+            }
+        }
+
         [HttpGet, ActionName("GetActive")]
         public IActionResult GetActive()
         {
