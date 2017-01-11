@@ -15,16 +15,16 @@
         div.setAttribute('style', 'margin-top: 10%');
 
         if (list.length == 0)
-            myFunction("00000000-0000-0000-0000-000000000000");
+            onItemClickTopics("00000000-0000-0000-0000-000000000000");
 
         for (var i = 0; i < list.length; i++) {
             if (i == 0) {
-                myFunction(list[i]["id"]);
+                onItemClickTopics(list[i]["id"]);
             }
             var item = document.createElement('button');
             item.setAttribute('type', 'button');
             item.setAttribute('class', 'list-group-item');
-            item.setAttribute('onclick', 'myFunction("'+list[i]["id"]+'")');
+            item.setAttribute('onclick', 'onItemClickTopics("'+list[i]["id"]+'")');
             item.appendChild(document.createTextNode(list[i]["topicName"]));
             div.appendChild(item);
         }
@@ -70,7 +70,12 @@ $(document).ready(function () {
 });
 
 
-function myFunction(idTopic) {
+function onItemClickTopics(idTopic) {
+    document.getElementById("materials").style.display = 'block';
+    document.getElementById("tests").style.display = 'none';
+    document.getElementById("testButton").setAttribute("value", idTopic);
+    document.getElementById("testButton").style.display = 'block';
+
         $.ajax({
             url: "/Materials/GetMaterialsByTopicID/" + idTopic,
             type: 'GET',
@@ -127,4 +132,14 @@ function myFunction(idTopic) {
             div.appendChild(item);
         }
     }
+
+    
 }
+
+function testYourselfButton() {
+    document.getElementById("materials").style.display = 'none';
+    document.getElementById("tests").style.display = 'block';
+    document.getElementById("testButton").style.display = 'none';
+    createQuestionsList();
+}
+
