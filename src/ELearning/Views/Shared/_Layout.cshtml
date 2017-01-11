@@ -29,6 +29,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ELearning</a>
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -40,8 +41,11 @@
                     </li>
                     <li><a asp-area="" asp-controller="Home" asp-action="FastQuestionProf">Fast Question</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="FastQuestionStud">Fast Question Stud</a></li>
+                    <li><p style="margin-top:13px;font-size:medium;color: darkgrey"> Greetings, @ViewData["FirstName"]!</p></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
                 </ul>
             </div>
+           
         </div>
     </div>
     <div class="container body-content">

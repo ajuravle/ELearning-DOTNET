@@ -89,6 +89,16 @@ namespace ELearning.Controllers
             return View(model);
         }
 
+        // GET: /Account/Logout
+        [AllowAnonymous]
+        public ActionResult Logout()
+        {
+            HttpContext.Session.SetString("Email", "");
+            HttpContext.Session.SetString("FirstName", "");
+            HttpContext.Session.SetString("LastName", "");
+            HttpContext.Session.SetString("Type", "");
+            return RedirectToAction("Topics", "Home");
+        }
 
     }
 }

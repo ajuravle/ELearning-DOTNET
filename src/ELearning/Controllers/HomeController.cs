@@ -22,6 +22,11 @@ namespace ELearning.Controllers
             return View();
         }
 
+        public IActionResult Downloads()
+        {
+            return View();
+        }
+
         public IActionResult Topics()
         {
             ViewBag.FirstName = HttpContext.Session.GetString("FirstName");

@@ -36,6 +36,14 @@
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
+        <tr>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Download" />
+                    <input type="button" onclick="window.location='/Account/Register'" class="btn btn-default" value="Register" />
+                </div>
+            </div>
+        </tr>
 }
     </tbody>
 </table>
