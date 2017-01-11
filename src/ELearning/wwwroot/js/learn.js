@@ -147,6 +147,12 @@ function testYourselfButton() {
     createQuestionsList();
 }
 
+function search2() {
+    if (event.keyCode == 13) {
+        search();
+    }
+}
+
 function search() {
     $.ajax({
         url: "/Technologies/GetAll",

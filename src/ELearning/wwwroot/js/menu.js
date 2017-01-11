@@ -52,7 +52,7 @@ function homeButton() {
             if (response[0] == null) 
                 window.location.replace("/");
             else
-                window.location.replace("/Home/Topics");
+                window.location.replace("/Home/Index");
         }
     });
 }

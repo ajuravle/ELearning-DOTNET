@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ELearning.Controllers
-{
+{   
     public class MaterialsController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ELearning.Data;
 using ELearning.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ELearning.Controllers
 {

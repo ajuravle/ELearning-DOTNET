@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using ELearning.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,7 +36,8 @@ namespace ELearning.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            var exists = _context.UniversityUsers.FirstOrDefaultAsync(x => x.email == model.Email);
+            if (ModelState.IsValid && exists == null)
             {
                 UniversityUser universityUser = new UniversityUser();
                 universityUser.Id = Guid.NewGuid();
@@ -47,8 +49,12 @@ namespace ELearning.Controllers
                 _context.Add(universityUser);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
-
             }
+            else
+            {
+                
+            }
+
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -82,7 +88,7 @@ namespace ELearning.Controllers
                     HttpContext.Session.SetString("FirstName", user.Firstname);
                     HttpContext.Session.SetString("LastName", user.Lastname);
                     HttpContext.Session.SetString("Type", user.Type);
-                    return RedirectToAction("Topics", "Home");
+                    return RedirectToAction("Index", "Home");
 
                 }
             }
@@ -100,6 +106,7 @@ namespace ELearning.Controllers
             sessionVar.Add(HttpContext.Session.GetString("Type"));
             return new ObjectResult(sessionVar);
         }
+
 
     }
 }

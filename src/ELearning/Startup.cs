@@ -49,7 +49,6 @@ namespace ELearning
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
 
-
             app.UseSession();
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -75,7 +74,7 @@ namespace ELearning
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Account}/{action=Login}/{id?}");
             });
 
             
