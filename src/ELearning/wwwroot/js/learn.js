@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    if (location.search.split("=")[1])
     $.ajax({
         url: "/Topics/GetTopicsByTechnologyID/" + location.search.split("=")[1],
         type: 'GET',
@@ -43,28 +44,30 @@ $(document).ready(function () {
 
     function f(list) {
         var div = document.getElementById('technologiesListImg');
-        div.setAttribute('class', 'row')
+        if (div) {
+            div.setAttribute('class', 'row')
 
-        for (var i = 0; i < list.length; i++) {
-            var item = document.createElement('div');
-            item.setAttribute('class', 'col-md-3');
+            for (var i = 0; i < list.length; i++) {
+                var item = document.createElement('div');
+                item.setAttribute('class', 'col-md-3');
 
-            var tumb = document.createElement('div');
-            tumb.setAttribute('class', 'thumbnail');
+                var tumb = document.createElement('div');
+                tumb.setAttribute('class', 'thumbnail');
 
-            var a = document.createElement('a');
-            a.setAttribute("href", "/Home/Learn?technology=" + list[i]["id"]);
+                var a = document.createElement('a');
+                a.setAttribute("href", "/Home/Learn?technology=" + list[i]["id"]);
 
-            var img = document.createElement('img');
-            img.setAttribute('src', list[i]["urlImage"]);
-            img.setAttribute('style', "width:100%");
-            img.setAttribute('alt', 'technology');
+                var img = document.createElement('img');
+                img.setAttribute('src', list[i]["urlImage"]);
+                img.setAttribute('style', "width:100%");
+                img.setAttribute('alt', 'technology');
 
-            a.appendChild(img);
-            tumb.appendChild(a);
-            item.appendChild(tumb);
-            div.appendChild(item);
+                a.appendChild(img);
+                tumb.appendChild(a);
+                item.appendChild(tumb);
+                div.appendChild(item);
 
+            }
         }
     }
 });
@@ -113,6 +116,7 @@ function onItemClickTopics(idTopic) {
                 item.setAttribute('class', 'item active');
             else
                 item.setAttribute('class', 'item');
+            if(list[i])
             if (list[i]["urlMaterial"].match(/\.(jpeg|jpg|gif|png)$/) == null) {
                 var img = document.createElement('div');
                 img.setAttribute('class', "embed-responsive embed-responsive-16by9");
@@ -141,5 +145,45 @@ function testYourselfButton() {
     document.getElementById("tests").style.display = 'block';
     document.getElementById("testButton").style.display = 'none';
     createQuestionsList();
+}
+
+function search() {
+    $.ajax({
+        url: "/Technologies/GetAll",
+        type: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            f(response);
+        }
+    });
+
+    function f(list) {
+        var searchText = document.getElementById('searchText').value;
+        var div = document.getElementById('technologiesListImg');
+        div.setAttribute('class', 'row')
+        while (div.firstChild) {
+            div.removeChild(div.firstChild);
+        }
+
+        for (var i = 0; i < list.length; i++) {
+            if (list[i]["name"].toLowerCase().includes(searchText.trim().toLowerCase())) {
+                console.log(list[i]["name"])
+                var item = document.createElement('div');
+                item.setAttribute('class', 'col-md-3');
+                var tumb = document.createElement('div');
+                tumb.setAttribute('class', 'thumbnail');
+                var a = document.createElement('a');
+                a.setAttribute("href", "/Home/Learn?technology=" + list[i]["id"]);
+                var img = document.createElement('img');
+                img.setAttribute('src', list[i]["urlImage"]);
+                img.setAttribute('style', "width:100%");
+                img.setAttribute('alt', 'technology');
+                a.appendChild(img);
+                tumb.appendChild(a);
+                item.appendChild(tumb);
+                div.appendChild(item);
+            }
+        }
+    }
 }
 

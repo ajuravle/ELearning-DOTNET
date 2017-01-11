@@ -28,18 +28,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ELearning</a>
+                <a class="navbar-brand"  href="javascript:homeButton()">ELearning</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>
+                    <li id="techMenu" style="display: none">
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="padding: 15px 15px 15px 15px; color: #9d9d9d; background-color: #101010;border-color: #101010">Technologies</button>
                             <ul id="technologiesList"></ul>
                         </div>
                     </li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="FastQuestionProf">Fast Question</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="FastQuestionStud">Fast Question Stud</a></li>
+                    <li id="profQ" style="display: none"><a asp-area="" asp-controller="Home" asp-action="FastQuestionProf">Fast Question</a></li>
+                    <li id="studQ" style="display: none"><a asp-area="" asp-controller="Home" asp-action="FastQuestionStud">Fast Question</a></li>
                 </ul>
             </div>
         </div>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ELearning.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -89,6 +90,16 @@ namespace ELearning.Controllers
             return View(model);
         }
 
+        [HttpGet, ActionName("GetAll")]
+        public IActionResult GetAll()
+        {
+            List<string> sessionVar = new List<string>();
+            sessionVar.Add(HttpContext.Session.GetString("Email"));
+            sessionVar.Add(HttpContext.Session.GetString("FirstName"));
+            sessionVar.Add(HttpContext.Session.GetString("LastName"));
+            sessionVar.Add(HttpContext.Session.GetString("Type"));
+            return new ObjectResult(sessionVar);
+        }
 
     }
 }
