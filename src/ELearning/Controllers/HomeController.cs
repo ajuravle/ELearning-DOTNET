@@ -23,7 +23,7 @@ namespace ELearning.Controllers
         }
 
         public IActionResult Downloads()
-        {
+        { 
             return View();
         }
 

@@ -97,7 +97,7 @@ namespace ELearning.Controllers
             HttpContext.Session.SetString("FirstName", "");
             HttpContext.Session.SetString("LastName", "");
             HttpContext.Session.SetString("Type", "");
-            return RedirectToAction("Topics", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
     }
