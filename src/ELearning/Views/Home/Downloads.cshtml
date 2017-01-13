@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@using (Html.BeginForm("Downloads", "Downloads", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <p>Select your desired technology</p>
+    <script>
+        function populateSelect(options) {
+            for (var i = 0; i < options.length; i++) {
+                var opt = options[i];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                select.appendChild(el);
+            }
+        }
+    </script>
+
+    <select >
+       
+    </select>
+    <br />
+    <select>
+        <option>3</option>
+        <option>4</option>
+    </select>
+}

@@ -98,6 +98,7 @@ namespace ELearning.Controllers
             return View(model);
         }
 
+<<<<<<< HEAD
         [HttpGet, ActionName("GetAll")]
         public IActionResult GetAll()
         {
@@ -109,6 +110,9 @@ namespace ELearning.Controllers
             return new ObjectResult(sessionVar);
         }
 
+=======
+        // GET: /Account/Logout
+>>>>>>> 52ad092028b9cee0d916780bec9033a2a457465b
         [AllowAnonymous]
         public ActionResult Logout()
         {
@@ -116,6 +120,7 @@ namespace ELearning.Controllers
             HttpContext.Session.SetString("FirstName", "");
             HttpContext.Session.SetString("LastName", "");
             HttpContext.Session.SetString("Type", "");
+<<<<<<< HEAD
             return RedirectToAction("Login", "Account");
         }
 
@@ -142,6 +147,10 @@ namespace ELearning.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("UserPage", "Account");
             }
+=======
+            return RedirectToAction("Index", "Home");
+        }
+>>>>>>> 52ad092028b9cee0d916780bec9033a2a457465b
 
             // If we got this far, something failed, redisplay form
             return View(model);

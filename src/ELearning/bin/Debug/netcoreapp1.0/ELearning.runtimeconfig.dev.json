@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
       "C:\\Users\\noru\\.nuget\\packages"
     ]
   }
+=======
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\stfn\\.nuget\\packages"
+    ]
+  }
+>>>>>>> 52ad092028b9cee0d916780bec9033a2a457465b
 }

@@ -24,6 +24,21 @@ namespace ELearning.Controllers
             return View();
         }
 
+<<<<<<< HEAD
+=======
+        public IActionResult Downloads()
+        { 
+            return View();
+        }
+
+        public IActionResult Topics()
+        {
+            ViewBag.FirstName = HttpContext.Session.GetString("FirstName");
+            ViewBag.LastName = HttpContext.Session.GetString("LastName");
+            ViewBag.Type = HttpContext.Session.GetString("Type");
+            return View();
+        }
+>>>>>>> 52ad092028b9cee0d916780bec9033a2a457465b
 
         public IActionResult FastQuestionProf()
         {

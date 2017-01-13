@@ -11,7 +11,9 @@
                     test.removeChild(test.firstChild);
                 }
                 var h = document.createElement("h4");
-                h.appendChild(document.createTextNode("No test yet"));
+                h.setAttribute("align", "center");
+                h.setAttribute("style", "margin-top: 100px");
+                h.appendChild(document.createTextNode("No test available"));
                 test.appendChild(h);
             } else {
                 f(response);
@@ -32,21 +34,21 @@
     });
 
     function f(response) {
-        
+
         var test = document.getElementById("tests");
         while (test.firstChild) {
             test.removeChild(test.firstChild);
         }
         var ol = document.createElement("ol");
         for (var i = 0; i < response.length; i++) {
-            
+
             var rr = response[i];
-            (function(rr) {
+            (function (rr) {
                 $.ajax({
                     url: "/Answers/GetByQuestionID/" + response[i]["id"],
                     type: 'GET',
                     dataType: 'json',
-                    success: function(res) {
+                    success: function (res) {
                         ol.appendChild(f2(rr, res));
                     }
                 });
@@ -57,7 +59,11 @@
 
     function f2(res1, res2) {
         var li = document.createElement("li");
+        li.style.fontWeight = 'bold';
+        li.style.fontSize = '200%';
         var qh4 = document.createElement("h4");
+        qh4.style.fontWeight = 'bold';
+        qh4.style.fontSize = '100%';
         qh4.appendChild(document.createTextNode(res1["questionText"]));
         li.appendChild(qh4);
         var answers = document.createElement("div");
@@ -69,13 +75,14 @@
             ck.setAttribute('style', "vertical-align:middle; float: left");
             ck.setAttribute('value', res2[j]["correct"]);
             var p = document.createElement("h4");
-
             p.setAttribute("style", "padding-right: 15px; padding-left: 5px; margin-left: 15px;");
             p.appendChild(document.createTextNode(res2[j]["answerText"]));
             p.setAttribute('name', "testAnsText");
             answers.appendChild(ck);
             answers.appendChild(p);
         }
+        var mybr = document.createElement('br');
+        answers.appendChild(mybr);
         li.appendChild(answers);
         return li;
     }
@@ -89,13 +96,9 @@ function submit_test() {
         answers[i].setAttribute("disabled", "true");
         if (answers[i].value == "true") {
             if (answers[i].checked == true) testResult++;
-            answersText[i].setAttribute("class", "text-success");
-        } else {
-            if (answers[i].checked == true) testResult--;
-            answersText[i].setAttribute("class", "text-danger");
+            answersText[i].style.color = 'green';
         }
     }
     document.getElementById("submitTestButton").style.display = 'none';
-    document.getElementById("testResult").appendChild(document.createTextNode("Result: " + testResult));
-
+    document.getElementById("testResult").appendChild(document.createTextNode("Result: " + testResult + "/10"));
 }
