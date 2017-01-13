@@ -8,7 +8,7 @@ using ELearning.Data;
 namespace ELearning.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170108183929_Initial")]
+    [Migration("20170113125930_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,6 +135,8 @@ namespace ELearning.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Avtive");
 
                     b.Property<string>("Firstname")
                         .IsRequired();

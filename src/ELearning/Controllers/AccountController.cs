@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ELearning.Model;
 using ELearning.Services;
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -52,15 +53,18 @@ namespace ELearning.Controllers
                 universityUser.email = model.Email;
                 universityUser.Password = model.Password;
                 universityUser.Type = "student";
+                universityUser.Avtive = false;
                 _context.Add(universityUser);
                 await _context.SaveChangesAsync();
 
-                s.SendMail(model.Email);
+                s.SendMail(model.Email, "http://"+HttpContext.Request.GetUri().Authority+"/UniversityUsers/ActivateUser/"+ universityUser.Id);
                 return RedirectToAction("Login", "Account");
             }
             else
             {
-                ModelState.AddModelError("Email", "Email already exist ");
+                if( account != null)
+                
+                    ModelState.AddModelError("Email", "Email already exist ");
             }
 
             // If we got this far, something failed, redisplay form
@@ -88,10 +92,17 @@ namespace ELearning.Controllers
                 var user = await _context.UniversityUsers.SingleOrDefaultAsync(m => m.email == model.Email);
                 if (user == null)
                 {
+                    ModelState.AddModelError("Credentials", "Incorect credentials");
                     return View();
                 }
                 else if (user.Password == model.Password)
                 {
+                    if (user.Avtive == false)
+                    {
+                        ModelState.AddModelError("Active", "Please activate your account first");
+                        return View();
+                    }
+
                     HttpContext.Session.SetString("Email", user.email);
                     HttpContext.Session.SetString("FirstName", user.Firstname);
                     HttpContext.Session.SetString("LastName", user.Lastname);
@@ -99,6 +110,7 @@ namespace ELearning.Controllers
                     return RedirectToAction("Index", "Home");
 
                 }
+                ModelState.AddModelError("Credentials", "Incorect credentials");
             }
             // If we got this far, something failed, redisplay form
             return View(model);

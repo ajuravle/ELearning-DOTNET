@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -148,6 +149,20 @@ namespace ELearning.Controllers
         private bool UniversityUserExists(Guid id)
         {
             return _context.UniversityUsers.Any(e => e.Id == id);
+        }
+
+        [HttpGet, ActionName("ActivateUser")]
+        public async Task<IActionResult> ActivateUser(Guid id)
+        {
+            var universityUser = await _context.UniversityUsers.SingleOrDefaultAsync(m => m.Id == id);
+            if (universityUser != null)
+            {
+                universityUser.Avtive = true;
+                _context.UniversityUsers.Update(universityUser);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Login", "Account");
+            }
+            return NotFound();
         }
     }
 }

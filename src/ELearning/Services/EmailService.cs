@@ -13,16 +13,18 @@ namespace ELearning.Services
     public class EmailService
     {
 
-        public void SendMail(string toMailAddress)
+        public void SendMail(string toMailAddress,string url)
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("ELearning", "woha.project@gmail.com"));
-            message.To.Add(new MailboxAddress("", "iuly2795@gmail.com"));
+            message.To.Add(new MailboxAddress("", toMailAddress));
             message.Subject = "Welkome to Elearning";
 
             message.Body = new TextPart("plain")
             {
-                Text = @"Welkome to Elearning"
+                Text = @"Welkome to Elearning
+
+To activate the account acces: " + url
             };
 
             using (var client = new SmtpClient())

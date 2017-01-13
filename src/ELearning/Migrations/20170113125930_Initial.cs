@@ -108,6 +108,7 @@ namespace ELearning.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Avtive = table.Column<bool>(nullable: false),
                     Firstname = table.Column<string>(nullable: false),
                     Lastname = table.Column<string>(nullable: false),
                     Password = table.Column<string>(maxLength: 255, nullable: false),
