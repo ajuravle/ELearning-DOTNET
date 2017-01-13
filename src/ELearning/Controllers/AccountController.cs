@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ELearning.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ELearning.Model;
+using ELearning.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -16,6 +18,9 @@ namespace ELearning.Controllers
 {
     public class AccountController : Controller
     {
+        private EmailService s = new EmailService();
+        
+
         private readonly ApplicationDbContext _context;
 
         public AccountController(ApplicationDbContext context)
@@ -36,8 +41,9 @@ namespace ELearning.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            var exists = _context.UniversityUsers.FirstOrDefaultAsync(x => x.email == model.Email);
-            if (ModelState.IsValid && exists == null)
+            var account = _context.UniversityUsers.FirstOrDefault(x => x.email == model.Email);
+
+            if (ModelState.IsValid && account == null)
             {
                 UniversityUser universityUser = new UniversityUser();
                 universityUser.Id = Guid.NewGuid();
@@ -48,11 +54,13 @@ namespace ELearning.Controllers
                 universityUser.Type = "student";
                 _context.Add(universityUser);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+
+                s.SendMail(model.Email);
+                return RedirectToAction("Login", "Account");
             }
             else
             {
-                
+                ModelState.AddModelError("Email", "Email already exist ");
             }
 
             // If we got this far, something failed, redisplay form
@@ -73,7 +81,7 @@ namespace ELearning.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model)
-        {
+        { 
             if (ModelState.IsValid)
             {
 

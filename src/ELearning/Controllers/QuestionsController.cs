@@ -157,7 +157,7 @@ namespace ELearning.Controllers
             if (id == null)
                 return NotFound();
 
-            var questions = _context.Questions.Where(c => c.IdTopic.Equals(id)).OrderBy(elem => Guid.NewGuid()).Take(10); 
+            var questions = _context.Questions.Where(c => c.IdTopic.Equals(id)).OrderBy(elem => Guid.NewGuid()).Take(5); 
 
             if (questions == null)
                 return NotFound();

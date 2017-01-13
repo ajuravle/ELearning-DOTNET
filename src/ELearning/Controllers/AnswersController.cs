@@ -169,7 +169,7 @@ namespace ELearning.Controllers
                 return NotFound();
             }
 
-            var answers = _context.Answers.Where(c => c.QuestionId.Equals(id));
+            var answers = _context.Answers.Where(c => c.QuestionId.Equals(id)).OrderBy(elem => Guid.NewGuid());
 
             if (answers == null)
             {

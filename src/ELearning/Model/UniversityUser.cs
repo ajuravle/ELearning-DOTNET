@@ -17,5 +17,7 @@ namespace ELearning.Model
         public string Type { get; set; }
         [Required, EmailAddress, Display(Name ="E-mail address")]
         public string email { get; set; }
+        [Required]
+        public bool Avtive { get; set; }
     }
 }

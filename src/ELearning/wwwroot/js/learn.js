@@ -110,7 +110,7 @@ function onItemClickTopics(idTopic) {
             div.appendChild(item);
         }
 
-        for (var i = 0; i <= list.length; i++) {
+        for (var i = 0; i < list.length; i++) {
             var item = document.createElement('div');
             if (i==0)
                 item.setAttribute('class', 'item active');

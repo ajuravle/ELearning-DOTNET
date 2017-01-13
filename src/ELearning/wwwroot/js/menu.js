@@ -13,6 +13,7 @@
             if (response[3] == "admin") {
                 document.getElementById("profQ").style.display = "block";
                 document.getElementById("studQ").style.display = "block";
+                document.getElementById("anminB").style.display = "block";
             }
 
             
