@@ -2907,11 +2907,7 @@
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "System.ComponentModel.Annotations": "4.3.0",
-<<<<<<< HEAD
-          "System.Interactive.Async": "3.0.0"
-=======
           "Microsoft.AspNetCore.Identity": "1.1.0"
->>>>>>> eeb83a2d1b3d469864c7beacb8e009a4b71b6472
         },
         "runtime": {
           "ELearning.dll": {}
