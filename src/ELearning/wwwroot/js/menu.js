@@ -4,7 +4,7 @@
         type: 'GET',
         dataType: 'json',
         success: function (response) {
-            if (response[3] != null) 
+            if (response[3] != null && response[3] != "") 
                 document.getElementById("techMenu").style.display = "block";
             if (response[3] == "professor")
                 document.getElementById("profQ").style.display = "block";
