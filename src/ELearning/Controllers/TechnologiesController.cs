@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ELearning.Data;
 using ELearning.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ELearning.Controllers
 {
+    [Authorize(Policy = "student")]
     public class TechnologiesController : Controller
     {
         private readonly ApplicationDbContext _context;
