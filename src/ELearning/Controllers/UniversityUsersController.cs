@@ -88,7 +88,7 @@ namespace ELearning.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Firstname,Lastname,Password,Type,email")] UniversityUser universityUser)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Firstname,Lastname,Password,Type,email,Active")] UniversityUser universityUser)
         {
             if (id != universityUser.Id)
             {
@@ -99,6 +99,7 @@ namespace ELearning.Controllers
             {
                 try
                 {
+                    universityUser.Avtive = true;
                     _context.Update(universityUser);
                     await _context.SaveChangesAsync();
                 }
