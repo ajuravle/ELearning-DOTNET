@@ -128,6 +128,43 @@ namespace ELearning.Controllers
             return new ObjectResult(sessionVar);
         }
 
+        // GET: /Account/Logout
+        [AllowAnonymous]
+        public ActionResult Logout()
+        {
+            HttpContext.Session.SetString("Email", "");
+            HttpContext.Session.SetString("FirstName", "");
+            HttpContext.Session.SetString("LastName", "");
+            HttpContext.Session.SetString("Type", "");
+            return RedirectToAction("Login", "Account");
+        }
 
+        // GET: Account/UserPage
+        public async Task<IActionResult> UserPage()
+        {
+            return View();
+        }
+
+        // POST: /Account/UserPage
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UserPage(UserPageViewModel model)
+        {
+            UniversityUser universityUser = await _context.UniversityUsers.FirstOrDefaultAsync(
+                x => x.email == HttpContext.Session.GetString("Email"));
+            if (ModelState.IsValid && universityUser != null)
+            {
+                universityUser.Firstname = model.FirstName;
+                universityUser.Lastname = model.LastName;
+                universityUser.Password = model.Password;
+                _context.Update(universityUser);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("UserPage", "Account");
+        }
     }
+
 }
+
