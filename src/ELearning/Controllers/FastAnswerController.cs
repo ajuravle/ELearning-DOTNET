@@ -50,5 +50,30 @@ namespace ELearning.Controllers
             return new ObjectResult(answers);
         }
 
+        [HttpPost]
+        public async Task<UserQA> AddUserResponse([FromBody] UserQA userQA)
+        {
+            if (ModelState.IsValid)
+            {
+                userQA.Id = Guid.NewGuid();
+                _context.Add(userQA);
+                await _context.SaveChangesAsync();
+            }
+            return userQA;
+        }
+
+        [HttpGet, ActionName("GetUserByQuestion")]
+        public IActionResult GetUserByQuestion(Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = _context.UserQA.FirstOrDefault(c => c.IdQA.Equals(id));
+
+            return new ObjectResult(user);
+        }
+
     }
 }

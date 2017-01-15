@@ -253,8 +253,8 @@ C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearn
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\TopicsController.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Controllers\UniversityUsersController.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Data\ApplicationDbContext.cs
-C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20170113125930_Initial.cs
-C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20170113125930_Initial.Designer.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20170115094102_Initial.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\20170115094102_Initial.Designer.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Migrations\ApplicationDbContextModelSnapshot.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\AccountModels.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\Answer.cs
@@ -265,4 +265,5 @@ C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearn
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\Technology.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\Topic.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\UniversityUser.cs
+C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Model\UserQA.cs
 C:\Users\andre\Documents\Visual Studio 2015\Projects\ELearning-DOTNET\src\ELearning\Services\EmailService.cs

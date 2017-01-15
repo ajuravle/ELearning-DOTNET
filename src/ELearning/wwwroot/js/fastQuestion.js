@@ -93,8 +93,7 @@ function submitQ() {
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function(result) {
-            console.log('Data received: ');
-            console.log(result);
+            
             post_ans(result);
         }
     });
@@ -137,34 +136,54 @@ $(document).ready(function () {
         type: 'GET',
         dataType: 'json',
         success: function (response) {
-            if (response == null) {
-                if (document.getElementById("fastQuestionR")) document.getElementById("fastQuestionR").appendChild(document.createTextNode("No active question"));
-                if (document.getElementById("buttonAnswer")) {
-                    document.getElementById("buttonAnswer").style.display = 'none';
+            if (response != null) idR = response["id"];
+            else idR = "00000000-0000-0000-0000-000000000000";
+            $.ajax({
+                url: "/FastAnswer/GetUserByQuestion/" + idR,
+                type: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    if (response == null) {
+                        if (document
+                                .getElementById("fastQuestionR")
+                        )
+                            document.getElementById("fastQuestionR")
+                                .appendChild(document.createTextNode("No active question"));
+                        if (document.getElementById("buttonAnswer")) {
+                            document.getElementById("buttonAnswer").style.display = 'none';
+                        }
+                    } else {
+                        question.appendChild(document.createTextNode(response["questionText"]));
+                        if (response["type"] == 0) {
+                            if (document
+                                    .getElementById("answersResp")
+                            ) document.getElementById("answersResp").style.display = 'none';
+                            if (document
+                                    .getElementById("answersStud")
+                            ) document.getElementById("answersStud").style.display = 'none';
+                            if (document.getElementById("textAreaStud")) {
+                                document.getElementById("textAreaStud").style.display = 'block';
+                                document
+                                    .getElementById("fastAnswer")
+                                    .setAttribute("placeholder", "Max characters number: " + response["number"]);
+                            }
+                        } else {
+                            if (document
+                                    .getElementById("textAreaStud")
+                            ) document.getElementById("textAreaStud").style.display = 'none';
+                            if (document
+                                    .getElementById("answersStud")
+                            ) document.getElementById("answersStud").style.display = 'block';
+
+                        }
+                        get_question_id(response["id"],res);
+                    }
                 }
-            }
-            else {
-                question.appendChild(document.createTextNode(response["questionText"]));
-            if (response["type"] == 0) {
-                if (document.getElementById("answersResp")) document.getElementById("answersResp").style.display = 'none';
-                if(document.getElementById("answersStud")) document.getElementById("answersStud").style.display = 'none';
-                if (document.getElementById("textAreaStud")) {
-                    document.getElementById("textAreaStud").style.display = 'block';
-                    document
-                        .getElementById("fastAnswer")
-                        .setAttribute("placeholder", "Max characters number: " + response["number"]);
-                }
-            } else {
-                if (document.getElementById("textAreaStud")) document.getElementById("textAreaStud").style.display = 'none';
-                if (document.getElementById("answersStud")) document.getElementById("answersStud").style.display = 'block';
-                
-            }
-            get_question_id(response["id"]);
-        }
+            });
         }
     });
 
-    function get_question_id(qID) {
+        function get_question_id(qID,res) {
         $.ajax({
             url: "/Answers/GetByQuestionID/" + qID,
             type: 'GET',
@@ -174,7 +193,7 @@ $(document).ready(function () {
                     get_answers(response);
                 }
                 if (document.getElementById("answersS")) {
-                    get_answers2(response);
+                    get_answers2(response,res);
                 }
             }
         });
@@ -195,29 +214,36 @@ $(document).ready(function () {
         }
     }
 
-    function get_answers2(response) {
-        console.log(response);
-        var answers = document.getElementById("answersS");
+    function get_answers2(response, res) {
+        if (res == null) {
+            console.log(res);
+            var answers = document.getElementById("answersS");
 
-        for (var i = 0; i < response.length; i++) {
-            var ck = document.createElement('input');
-            ck.setAttribute('type', "checkbox");
-            ck.setAttribute('style', "vertical-align:middle; float: left");
-            ck.setAttribute('id', "ck" + i);
-            ck.setAttribute('value', response[i]["id"]);
-            ck.setAttribute('data-valuetwo', response[i]["correct"]);
-            ck.setAttribute('name', "ck_name");
+            for (var i = 0; i < response.length; i++) {
+                var ck = document.createElement('input');
+                ck.setAttribute('type', "checkbox");
+                ck.setAttribute('style', "vertical-align:middle; float: left");
+                ck.setAttribute('id', "ck" + i);
+                ck.setAttribute('value', response[i]["id"]);
+                ck.setAttribute('data-valuetwo', response[i]["correct"]);
+                ck.setAttribute('name', "ck_name");
 
-            var p = document.createElement("h4");
+                var p = document.createElement("h4");
 
-            p.setAttribute("style", "padding-right: 15px; padding-left: 5px; margin-left: 15px;");
-            p.appendChild(document.createTextNode(response[i]["answerText"]));
-            p.setAttribute('id', "ckaa" + i);
-            answers.appendChild(ck);
-            answers.appendChild(p);
+                p.setAttribute("style", "padding-right: 15px; padding-left: 5px; margin-left: 15px;");
+                p.appendChild(document.createTextNode(response[i]["answerText"]));
+                p.setAttribute('id', "ckaa" + i);
+                answers.appendChild(ck);
+                answers.appendChild(p);
+            }
+        } else {
+            document.getElementById("activeAnswer").style.display = 'none';
+            document.getElementById("fastQuestionR").removeChild(document.getElementById("fastQuestionR").firstChild);
+
+            document.getElementById("fastQuestionR")
+                                .appendChild(document.createTextNode("No active question"));
         }
     }
-
 
 });
 
@@ -227,15 +253,44 @@ function post_answerStudent() {
         type: 'GET',
         dataType: 'json',
         success: function (response) {
+            postUserQA(response["id"]);
             if (response["type"]==0)
                 f(response);
             else {
                 f2(response);
             }
             document.getElementById("activeAnswer").style.display = 'none';
-            document.getElementById("inactiveAnswer").style.display = 'block';
         }
     });
+
+    //---------------------------------------------------------
+    function postUserQA(questionID) {
+        $.ajax({
+            url: "/Account/GetAll",
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                if (response[0] != null) {
+                    var data = {
+                        "idUser": response[4],
+                        "idQA": questionID
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: '/FastAnswer/AddUserResponse',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                        success: function (result) {
+                         
+                        }
+                    });
+
+                }
+            }
+        });
+    }
+    //---------------------------------------------------------
 
     function f(response) {
         text = document.getElementById("fastAnswer").value;
@@ -259,8 +314,7 @@ function post_answerStudent() {
                 contentType: 'application/json',
                 data: JSON.stringify(dataA),
                 success: function(result) {
-                    console.log('Data received: ');
-                    console.log(result);
+                   
                 }
             });
             document.getElementById("inactiveAnswer").appendChild(document.createTextNode("Your answer:\xa0\xa0\xa0\xa0" + text));
@@ -288,8 +342,7 @@ function post_answerStudent() {
                     contentType: 'application/json',
                     data: JSON.stringify(dataA),
                     success: function (result) {
-                        console.log('Data received: ');
-                        console.log(result);
+                       
                     }
                 });
             }
@@ -360,7 +413,7 @@ function get_answerStudent() {
                         var td1 = document.createElement("td");
                         var nr = 0;
                         for (var j = 0; j < answers.length; j++) {
-                            console.log()
+                            
                             if (answers[j]["answer"] == res[i]["id"])
                                 nr++;
                         }

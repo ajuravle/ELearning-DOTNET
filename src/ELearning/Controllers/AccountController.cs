@@ -102,7 +102,7 @@ namespace ELearning.Controllers
                         ModelState.AddModelError("Active", "Please activate your account first");
                         return View();
                     }
-
+                    HttpContext.Session.SetString("ID", user.Id.ToString());
                     HttpContext.Session.SetString("Email", user.email);
                     HttpContext.Session.SetString("FirstName", user.Firstname);
                     HttpContext.Session.SetString("LastName", user.Lastname);
@@ -124,6 +124,7 @@ namespace ELearning.Controllers
             sessionVar.Add(HttpContext.Session.GetString("FirstName"));
             sessionVar.Add(HttpContext.Session.GetString("LastName"));
             sessionVar.Add(HttpContext.Session.GetString("Type"));
+            sessionVar.Add(HttpContext.Session.GetString("ID"));
             return new ObjectResult(sessionVar);
         }
 

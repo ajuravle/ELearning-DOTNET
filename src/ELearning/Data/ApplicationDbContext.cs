@@ -18,5 +18,6 @@ namespace ELearning.Data
         public DbSet<Material> Materials { get; set; }
         public DbSet<FastQuestion> FastQuestion { get; set; }
         public DbSet<FastAnswer> FastAnswer { get; set; }
+        public DbSet<UserQA> UserQA { get; set; }
     }
 }

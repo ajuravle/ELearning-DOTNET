@@ -119,6 +119,19 @@ namespace ELearning.Migrations
                 {
                     table.PrimaryKey("PK_UniversityUsers", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "UserQA",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    IdQA = table.Column<Guid>(nullable: false),
+                    IdUser = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserQA", x => x.Id);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -146,6 +159,9 @@ namespace ELearning.Migrations
 
             migrationBuilder.DropTable(
                 name: "UniversityUsers");
+
+            migrationBuilder.DropTable(
+                name: "UserQA");
         }
     }
 }

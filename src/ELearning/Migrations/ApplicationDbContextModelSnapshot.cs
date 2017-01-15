@@ -157,6 +157,20 @@ namespace ELearning.Migrations
 
                     b.ToTable("UniversityUsers");
                 });
+
+            modelBuilder.Entity("ELearning.Model.UserQA", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("IdQA");
+
+                    b.Property<Guid>("IdUser");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserQA");
+                });
         }
     }
 }
