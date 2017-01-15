@@ -318,6 +318,7 @@ function post_answerStudent() {
                 }
             });
             document.getElementById("inactiveAnswer").appendChild(document.createTextNode("Your answer:\xa0\xa0\xa0\xa0" + text));
+            document.getElementById("inactiveAnswer").style.display = "block";
         }
     }
 
@@ -358,6 +359,7 @@ function post_answerStudent() {
                 p.setAttribute("class", "text-danger");
             p.appendChild(document.createTextNode(rasp[i]));
             inactiveAnswer.appendChild(p);
+            inactiveAnswer.style.display = "block";
         }
 
     }
