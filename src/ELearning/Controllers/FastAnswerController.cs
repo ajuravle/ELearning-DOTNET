@@ -70,7 +70,7 @@ namespace ELearning.Controllers
                 return NotFound();
             }
 
-            var user = _context.UserQA.FirstOrDefault(c => c.IdQA.Equals(id));
+            var user = _context.UserQA.Where(c => c.IdQA.Equals(id)).AsEnumerable();
 
             return new ObjectResult(user);
         }

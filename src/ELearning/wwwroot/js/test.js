@@ -6,7 +6,7 @@
         dataType: 'json',
         success: function (response) {
             test = document.getElementById("tests");
-            if (response == null || response.length == 0) {
+            if (response === null || response.length === 0) {
                 while (test.firstChild) {
                     test.removeChild(test.firstChild);
                 }
@@ -87,11 +87,11 @@ function submit_test() {
     var answersText = document.getElementsByName("testAnsText");
     for (var i = 0; i < answers.length; i++) {
         answers[i].setAttribute("disabled", "true");
-        if (answers[i].value == "true") {
-            if (answers[i].checked == true) testResult++;
+        if (answers[i].value === "true") {
+            if (answers[i].checked === true) testResult++;
             answersText[i].setAttribute("class", "text-success");
         } else {
-            if (answers[i].checked == true) testResult--;
+            if (answers[i].checked === true) testResult--;
             answersText[i].setAttribute("class", "text-danger");
         }
     }

@@ -15,11 +15,11 @@
         div.setAttribute('class', 'list-group');
         div.setAttribute('style', 'margin-top: 10%');
 
-        if (list.length == 0)
+        if (list.length === 0)
             onItemClickTopics("00000000-0000-0000-0000-000000000000");
 
         for (var i = 0; i < list.length; i++) {
-            if (i == 0) {
+            if (i === 0) {
                 onItemClickTopics(list[i]["id"]);
             }
             var item = document.createElement('button');
@@ -48,25 +48,7 @@ $(document).ready(function () {
             div.setAttribute('class', 'row')
 
             for (var i = 0; i < list.length; i++) {
-                var item = document.createElement('div');
-                item.setAttribute('class', 'col-md-3');
-
-                var tumb = document.createElement('div');
-                tumb.setAttribute('class', 'thumbnail');
-
-                var a = document.createElement('a');
-                a.setAttribute("href", "/Home/Learn?technology=" + list[i]["id"]);
-
-                var img = document.createElement('img');
-                img.setAttribute('src', list[i]["urlImage"]);
-                img.setAttribute('style', "width:100%");
-                img.setAttribute('alt', 'technology');
-
-                a.appendChild(img);
-                tumb.appendChild(a);
-                item.appendChild(tumb);
-                div.appendChild(item);
-
+                div.appendChild(createSquare(list, i));
             }
         }
     }
@@ -97,7 +79,7 @@ function onItemClickTopics(idTopic) {
             div.removeChild(div.firstChild);
         }
 
-        if (list.length == 0) {
+        if (list.length === 0) {
             var item = document.createElement('div');
             item.setAttribute('class', 'item active');
             var img = document.createElement('img');
@@ -112,12 +94,12 @@ function onItemClickTopics(idTopic) {
 
         for (var i = 0; i < list.length; i++) {
             var item = document.createElement('div');
-            if (i==0)
+            if (i===0)
                 item.setAttribute('class', 'item active');
             else
                 item.setAttribute('class', 'item');
             if(list[i])
-            if (list[i]["urlMaterial"].match(/\.(jpeg|jpg|gif|png)$/) == null) {
+            if (list[i]["urlMaterial"].match(/\.(jpeg|jpg|gif|png)$/) === null) {
                 var img = document.createElement('div');
                 img.setAttribute('class', "embed-responsive embed-responsive-16by9");
                 var ifr = document.createElement('iframe');
@@ -148,7 +130,7 @@ function testYourselfButton() {
 }
 
 function search2() {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
         search();
     }
 }
@@ -173,23 +155,27 @@ function search() {
 
         for (var i = 0; i < list.length; i++) {
             if (list[i]["name"].toLowerCase().includes(searchText.trim().toLowerCase())) {
-                console.log(list[i]["name"])
-                var item = document.createElement('div');
-                item.setAttribute('class', 'col-md-3');
-                var tumb = document.createElement('div');
-                tumb.setAttribute('class', 'thumbnail');
-                var a = document.createElement('a');
-                a.setAttribute("href", "/Home/Learn?technology=" + list[i]["id"]);
-                var img = document.createElement('img');
-                img.setAttribute('src', list[i]["urlImage"]);
-                img.setAttribute('style', "width:100%");
-                img.setAttribute('alt', 'technology');
-                a.appendChild(img);
-                tumb.appendChild(a);
-                item.appendChild(tumb);
-                div.appendChild(item);
+                
+                div.appendChild(createSquare(list,i));
             }
         }
     }
+}
+
+function createSquare(list,i ) {
+    var item = document.createElement('div');
+    item.setAttribute('class', 'col-md-3');
+    var tumb = document.createElement('div');
+    tumb.setAttribute('class', 'thumbnail');
+    var a = document.createElement('a');
+    a.setAttribute("href", "/Home/Learn?technology=" + list[i]["id"]);
+    var img = document.createElement('img');
+    img.setAttribute('src', list[i]["urlImage"]);
+    img.setAttribute('style', "width:100%");
+    img.setAttribute('alt', 'technology');
+    a.appendChild(img);
+    tumb.appendChild(a);
+    item.appendChild(tumb);
+    return item;
 }
 
