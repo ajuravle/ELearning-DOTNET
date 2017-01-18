@@ -38,7 +38,17 @@
                             <ul id="technologiesList"></ul>
                         </div>
                     </li>
-                    <li id="profQ" style="display: none"><a asp-area="" asp-controller="Home" asp-action="FastQuestionProf">Fast Question</a></li>
+                    <li id="profQ" style="display: none">
+                        <a asp-area="" asp-controller="Home" asp-action="FastQuestionProf">Fast Question</a>
+                    </li>
+                    <li id="profP" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-area="" asp-controller="Professor" asp-action="CreateTechnology">Add technology</a></li>
+                            <li><a asp-area="" asp-controller="Professor" asp-action="CreateTopic">Add topic</a></li>
+                            <li><a asp-area="" asp-controller="Professor" asp-action="CreateMaterial">Add material</a></li>
+                        </ul>
+                    </li>
                     <li id="studQ" style="display: none"><a asp-area="" asp-controller="Home" asp-action="FastQuestionStud">Fast Question</a></li>
                     <li id="userP" style="display: none"><a asp-area="" asp-controller="Account" asp-action="UserPage">Your Page</a></li>
                     <li id="anminB" style="display: none"><a asp-area="" asp-controller="UniversityUsers" asp-action="Index">User Management</a></li>

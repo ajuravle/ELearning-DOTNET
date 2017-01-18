@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="js/addmaterial.js" />
 /// <reference path="js/fastQuestion.js" />
 /// <reference path="js/learn.js" />
 /// <reference path="js/menu.js" />
