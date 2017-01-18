@@ -192,7 +192,15 @@ $(document).ready(function () {
                     get_answers(response);
                 }
                 if (document.getElementById("answersS")) {
-                    get_answers2(response,res);
+                    $.ajax({
+                        url: "/Account/GetAll",
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(responseUser) {
+                            get_answers2(response, res,responseUser[4]);
+                        }
+                    });
+                    
                 }
             }
         });
@@ -213,8 +221,15 @@ $(document).ready(function () {
         }
     }
 
-    function get_answers2(response, res) {
-        if (res == null) {
+    function get_answers2(response, res, idUser) {
+        var exist = false;
+        for (var i=0;i<res.length;i++) {
+            if (res[i]["idUser"] === idUser)
+                exist = true;
+        }
+
+
+        if (!exist) {
             var answers = document.getElementById("answersS");
 
             for (var i = 0; i < response.length; i++) {
