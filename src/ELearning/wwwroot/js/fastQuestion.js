@@ -1,11 +1,11 @@
 ﻿$(document).ready(function () {
     $("input[type=radio][name=radioA]").change(function () {
-        if (this.value == 'choice') {
+        if (this.value === 'choice') {
             document.getElementById("nrCharactersAnswerDiv").style.display = 'none';
             document.getElementById("answers").style.display = 'block';
             document.getElementById("buttonAddAnswer").style.display = 'block';
         }
-        else if (this.value == 'text') {
+        else if (this.value === 'text') {
             document.getElementById("nrCharactersAnswerDiv").style.display = 'block';
             document.getElementById("answers").style.display = 'none';
             document.getElementById("buttonAddAnswer").style.display = 'none';
@@ -46,7 +46,7 @@ function addAnswer() {
 
 function validateQ() {
     var obj1 = document.getElementById('fastQuestion');
-    if (obj1.value == '') {
+    if (obj1.value === '') {
         document.getElementById('err_q').appendChild(document.createTextNode("The Question field is required"));
         obj1.focus();
         return false;
@@ -64,7 +64,7 @@ function submitQ() {
     var sel_type;
     for (var i = 0; i < types.length; i++) {
         if (types[i].checked) {
-            if (types[i].value == 'text')
+            if (types[i].value === 'text')
                 sel_type = 0;
             else {
                 sel_type = 1;
@@ -72,7 +72,7 @@ function submitQ() {
         }
     }
     var nr;
-    if (sel_type == 0) {
+    if (sel_type === 0) {
         nr = document.getElementById('nrCharactersAnswer').value;
     } else {
         nr = document.getElementById('answers').childElementCount;
@@ -100,7 +100,7 @@ function submitQ() {
 
     function post_ans(result) {
         var id_q = result["id"];
-        if (sel_type == 1) {
+        if (sel_type === 1) {
             for (var i = 0; i < nr; i++) {
                 var ans = document.getElementById("ans" + i).value
                 var ischecked = document.getElementById("check" + i).checked
@@ -118,8 +118,7 @@ function submitQ() {
                     contentType: 'application/json',
                     data: JSON.stringify(dataA),
                     success: function (result) {
-                        console.log('Data received: ');
-                        console.log(result);
+                       
                     }
                 });
             }
@@ -154,7 +153,7 @@ $(document).ready(function () {
                         }
                     } else {
                         question.appendChild(document.createTextNode(response["questionText"]));
-                        if (response["type"] == 0) {
+                        if (response["type"] === 0) {
                             if (document
                                     .getElementById("answersResp")
                             ) document.getElementById("answersResp").style.display = 'none';
@@ -216,7 +215,6 @@ $(document).ready(function () {
 
     function get_answers2(response, res) {
         if (res == null) {
-            console.log(res);
             var answers = document.getElementById("answersS");
 
             for (var i = 0; i < response.length; i++) {
@@ -254,7 +252,7 @@ function post_answerStudent() {
         dataType: 'json',
         success: function (response) {
             postUserQA(response["id"]);
-            if (response["type"]==0)
+            if (response["type"]===0)
                 f(response);
             else {
                 f2(response);
@@ -353,7 +351,7 @@ function post_answerStudent() {
         for (var i = 0; i < rasp.length; i++) {
             var p = document.createElement("h4");
             p.setAttribute("style", "padding-right: 15px; padding-left: 5px; margin-left: 15px;");
-            if (correct[i]=="true")
+            if (correct[i]==="true")
                 p.setAttribute("class", "text-success");
             else
                 p.setAttribute("class", "text-danger");
@@ -393,7 +391,7 @@ function get_answerStudent() {
     }
 
     function f2(answers, question) {
-        if (question["type"] == 0) {
+        if (question["type"] === 0) {
             var table = document.getElementById("answersTable");
             for (var i = 0; i < answers.length; i++) {
                 var tr = document.createElement("tr");
@@ -416,7 +414,7 @@ function get_answerStudent() {
                         var nr = 0;
                         for (var j = 0; j < answers.length; j++) {
                             
-                            if (answers[j]["answer"] == res[i]["id"])
+                            if (answers[j]["answer"] === res[i]["id"])
                                 nr++;
                         }
                         td1.appendChild(document.createTextNode(nr + " (" + (nr*100 / answers.length).toFixed(2) + "%)"));

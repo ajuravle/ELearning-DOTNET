@@ -4,14 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using ELearning.Data;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ELearning.Model;
 using ELearning.Services;
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,14 +17,13 @@ namespace ELearning.Controllers
 {
     public class AccountController : Controller
     {
-        private EmailService s = new EmailService();
-        
-
+        private readonly EmailService _emailService;
         private readonly ApplicationDbContext _context;
 
         public AccountController(ApplicationDbContext context)
         {
             _context = context;
+            _emailService = new EmailService();
         }
 
         // GET: /Account/Register
@@ -57,7 +54,7 @@ namespace ELearning.Controllers
                 _context.Add(universityUser);
                 await _context.SaveChangesAsync();
 
-                s.SendMail(model.Email, "http://"+HttpContext.Request.GetUri().Authority+"/UniversityUsers/ActivateUser/"+ universityUser.Id);
+                _emailService.SendMail(model.Email, "http://"+HttpContext.Request.GetUri().Authority+"/UniversityUsers/ActivateUser/"+ universityUser.Id);
                 return RedirectToAction("Login", "Account");
             }
             else
@@ -97,7 +94,7 @@ namespace ELearning.Controllers
                 }
                 else if (user.Password == model.Password)
                 {
-                    if (user.Avtive == false)
+                    if (!user.Avtive)
                     {
                         ModelState.AddModelError("Active", "Please activate your account first");
                         return View();

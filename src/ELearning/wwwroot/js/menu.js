@@ -9,11 +9,11 @@
                 document.getElementById("userP").style.display = "block";
                 document.getElementById("logout").style.display = "block";
             }
-            if (response[3] == "professor")
+            if (response[3] === "professor")
                 document.getElementById("profQ").style.display = "block";
-            if (response[3] == "student")
+            if (response[3] === "student")
                 document.getElementById("studQ").style.display = "block";
-            if (response[3] == "admin") {
+            if (response[3] === "admin") {
                 document.getElementById("profQ").style.display = "block";
                 document.getElementById("studQ").style.display = "block";
                 document.getElementById("anminB").style.display = "block";
@@ -53,7 +53,7 @@ function homeButton() {
         type: 'GET',
         dataType: 'json',
         success: function(response) {
-            if (response[0] == null || response[0] == "")
+            if (response[0] === null || response[0] === "")
                 window.location.replace("/");
             else
                 window.location.replace("/Home/Index");
