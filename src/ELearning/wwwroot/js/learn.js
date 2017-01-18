@@ -48,25 +48,7 @@ $(document).ready(function () {
             div.setAttribute('class', 'row')
 
             for (var i = 0; i < list.length; i++) {
-                var item = document.createElement('div');
-                item.setAttribute('class', 'col-md-3');
-
-                var tumb = document.createElement('div');
-                tumb.setAttribute('class', 'thumbnail');
-
-                var a = document.createElement('a');
-                a.setAttribute("href", "/Home/Learn?technology=" + list[i]["id"]);
-
-                var img = document.createElement('img');
-                img.setAttribute('src', list[i]["urlImage"]);
-                img.setAttribute('style', "width:100%");
-                img.setAttribute('alt', 'technology');
-
-                a.appendChild(img);
-                tumb.appendChild(a);
-                item.appendChild(tumb);
-                div.appendChild(item);
-
+                div.appendChild(createSquare(list, i));
             }
         }
     }
@@ -173,22 +155,27 @@ function search() {
 
         for (var i = 0; i < list.length; i++) {
             if (list[i]["name"].toLowerCase().includes(searchText.trim().toLowerCase())) {
-                var item = document.createElement('div');
-                item.setAttribute('class', 'col-md-3');
-                var tumb = document.createElement('div');
-                tumb.setAttribute('class', 'thumbnail');
-                var a = document.createElement('a');
-                a.setAttribute("href", "/Home/Learn?technology=" + list[i]["id"]);
-                var img = document.createElement('img');
-                img.setAttribute('src', list[i]["urlImage"]);
-                img.setAttribute('style', "width:100%");
-                img.setAttribute('alt', 'technology');
-                a.appendChild(img);
-                tumb.appendChild(a);
-                item.appendChild(tumb);
-                div.appendChild(item);
+                
+                div.appendChild(createSquare(list,i));
             }
         }
     }
+}
+
+function createSquare(list,i ) {
+    var item = document.createElement('div');
+    item.setAttribute('class', 'col-md-3');
+    var tumb = document.createElement('div');
+    tumb.setAttribute('class', 'thumbnail');
+    var a = document.createElement('a');
+    a.setAttribute("href", "/Home/Learn?technology=" + list[i]["id"]);
+    var img = document.createElement('img');
+    img.setAttribute('src', list[i]["urlImage"]);
+    img.setAttribute('style', "width:100%");
+    img.setAttribute('alt', 'technology');
+    a.appendChild(img);
+    tumb.appendChild(a);
+    item.appendChild(tumb);
+    return item;
 }
 
