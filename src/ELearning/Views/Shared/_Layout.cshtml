@@ -38,7 +38,20 @@
                             <ul id="technologiesList"></ul>
                         </div>
                     </li>
-                    <li id="profQ" style="display: none"><a asp-area="" asp-controller="Home" asp-action="FastQuestionProf">Fast Question</a></li>
+                    <li id="profQ" style="display: none">
+                        <a asp-area="" asp-controller="Home" asp-action="FastQuestionProf">Fast Question</a>
+                    </li>
+                    <li id="profP" style="display: none">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="padding: 15px 15px 15px 15px; color: #9d9d9d; background-color: #101010;border-color: #101010">Professor Page</button>
+                            <ul class="dropdown-menu">
+                                <li><a asp-area="" asp-controller="Professor" asp-action="CreateTechnology">Add technology</a></li>
+                                <li><a asp-area="" asp-controller="Professor" asp-action="CreateTopic">Add topic</a></li>
+                                <li><a asp-area="" asp-controller="Professor" asp-action="CreateMaterial">Add material</a></li>
+                            </ul>
+                        </div>
+
+                    </li>
                     <li id="studQ" style="display: none"><a asp-area="" asp-controller="Home" asp-action="FastQuestionStud">Fast Question</a></li>
                     <li id="userP" style="display: none"><a asp-area="" asp-controller="Account" asp-action="UserPage">Your Page</a></li>
                     <li id="anminB" style="display: none"><a asp-area="" asp-controller="UniversityUsers" asp-action="Index">User Management</a></li>

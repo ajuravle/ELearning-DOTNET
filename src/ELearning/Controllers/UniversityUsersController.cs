@@ -99,7 +99,7 @@ namespace ELearning.Controllers
             {
                 try
                 {
-                    universityUser.Avtive = true;
+                    universityUser.Active = true;
                     _context.Update(universityUser);
                     await _context.SaveChangesAsync();
                 }
@@ -158,7 +158,7 @@ namespace ELearning.Controllers
             var universityUser = await _context.UniversityUsers.SingleOrDefaultAsync(m => m.Id == id);
             if (universityUser != null)
             {
-                universityUser.Avtive = true;
+                universityUser.Active = true;
                 _context.UniversityUsers.Update(universityUser);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Login", "Account");

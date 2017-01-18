@@ -47,7 +47,7 @@ namespace ELearning.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdTopic,UrlMaterial")] Material material)
+        public async Task<IActionResult> Create([Bind("Id,IdTopic,UrlMaterial")] AddMaterialViewModel material)
         {
             if (ModelState.IsValid)
             {

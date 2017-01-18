@@ -1,0 +1,41 @@
+@model ELearning.Model.Topic
+
+@{
+    ViewData["Title"] = "Create topic";
+}
+
+<h2>Create topic</h2>
+
+<form asp-action="CreateTopic">
+    <div class="form-horizontal">
+        <h4>Topic</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Technologies</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.IdTechnology, ViewBag.Technologies as SelectList, null, new { @class = "input-large form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TopicName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="TopicName" class="form-control" />
+                <span asp-validation-for="TopicName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

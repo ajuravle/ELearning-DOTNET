@@ -150,20 +150,20 @@ namespace ELearning.Controllers
         }
 
         [HttpGet, ActionName("GetTopicsByTechnologyID")]
-        public IActionResult GetTopicsByTechnologyID(Guid? id)
+        public async Task<IActionResult> GetTopicsByTechnologyID(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var topics = _context.Topics.Where(c => c.IdTechnology.Equals(id));
+            var topics = await _context.Topics.Where(c => c.IdTechnology == id).ToListAsync();
 
             if (topics == null)
             {
                 return NotFound();
             }
-           
+
             return new ObjectResult(topics);
         }
     }

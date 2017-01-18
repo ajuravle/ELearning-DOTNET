@@ -50,7 +50,7 @@ namespace ELearning.Controllers
                 universityUser.email = model.Email;
                 universityUser.Password = model.Password;
                 universityUser.Type = "student";
-                universityUser.Avtive = false;
+                universityUser.Active = false;
                 _context.Add(universityUser);
                 await _context.SaveChangesAsync();
 
@@ -94,7 +94,7 @@ namespace ELearning.Controllers
                 }
                 else if (user.Password == model.Password)
                 {
-                    if (!user.Avtive)
+                    if (!user.Active)
                     {
                         ModelState.AddModelError("Active", "Please activate your account first");
                         return View();
@@ -140,7 +140,21 @@ namespace ELearning.Controllers
         // GET: Account/UserPage
         public async Task<IActionResult> UserPage()
         {
-            return View();
+            UniversityUser universityUser = await _context.UniversityUsers.FirstOrDefaultAsync(
+               x => x.email == HttpContext.Session.GetString("Email"));
+
+            if (ModelState.IsValid && universityUser != null)
+            {
+                UserPageViewModel model = new UserPageViewModel
+                {
+                    FirstName = universityUser.Firstname,
+                    LastName = universityUser.Lastname
+                };
+
+                return View(model);
+            }
+
+            return RedirectToAction("UserPage", "Account");
         }
 
         // POST: /Account/UserPage
@@ -151,15 +165,36 @@ namespace ELearning.Controllers
         {
             UniversityUser universityUser = await _context.UniversityUsers.FirstOrDefaultAsync(
                 x => x.email == HttpContext.Session.GetString("Email"));
+
+            if (!string.IsNullOrEmpty(model.Password))
+            {
+                if (universityUser.Password == model.OldPassword && ModelState.IsValid)
+                {
+                    universityUser.Password = model.Password;
+                }
+                else
+                {
+                    return RedirectToAction("UserPage", "Account");
+                }
+            }
+            else
+            {
+                ModelState.Remove("Password");
+                ModelState.Remove("ConfirmPassword");
+                ModelState.Remove("OldPassword");
+            }
+
             if (ModelState.IsValid && universityUser != null)
             {
                 universityUser.Firstname = model.FirstName;
                 universityUser.Lastname = model.LastName;
-                universityUser.Password = model.Password;
+
                 _context.Update(universityUser);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction("Index", "Home");
             }
+
             return RedirectToAction("UserPage", "Account");
         }
     }

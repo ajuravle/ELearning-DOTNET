@@ -9,9 +9,11 @@
                 document.getElementById("userP").style.display = "block";
                 document.getElementById("logout").style.display = "block";
             }
-            if (response[3] === "professor")
+            if (response[3] == "professor") {
                 document.getElementById("profQ").style.display = "block";
-            if (response[3] === "student")
+                document.getElementById("profP").style.display = "block";
+            }
+            if (response[3] == "student")
                 document.getElementById("studQ").style.display = "block";
             if (response[3] === "admin") {
                 document.getElementById("profQ").style.display = "block";

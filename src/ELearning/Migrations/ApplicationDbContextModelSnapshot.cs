@@ -135,7 +135,7 @@ namespace ELearning.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("Avtive");
+                    b.Property<bool>("Active");
 
                     b.Property<string>("Firstname")
                         .IsRequired();
