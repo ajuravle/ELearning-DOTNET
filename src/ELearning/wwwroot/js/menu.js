@@ -19,6 +19,7 @@
                 document.getElementById("profQ").style.display = "block";
                 document.getElementById("studQ").style.display = "block";
                 document.getElementById("anminB").style.display = "block";
+                document.getElementById("profP").style.display = "block";
             }
 
             
